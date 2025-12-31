@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Pratta Tech - Landing Page</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pratta Tech | Soluções Digitais</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            purple: '#6c63ff',
+                            dark: '#302f3b',
+                            darker: '#25242e',
+                            light: '#ffffff'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #302f3b;
+            color: white;
+            scroll-behavior: smooth;
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(90deg, #fff 0%, #6c63ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Glow Effects */
+        .glow-button {
+            box-shadow: 0 0 15px rgba(108, 99, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 25px rgba(108, 99, 255, 0.7);
+            transform: translateY(-2px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #302f3b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #6c63ff;
+            border-radius: 5px;
+        }
+
+        /* Floating Animation for Hero Image */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Modal Transitions */
+        .modal {
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-[#302f3b]/90 backdrop-blur-md border-b border-gray-700/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <img src="https://res.cloudinary.com/ddkundhsl/image/upload/v1767220328/5_d5neka.png" alt="Pratta Tech" class="h-10 w-auto object-contain" onerror="this.onerror=null; this.src='https://placehold.co/150x50/302f3b/6c63ff?text=PrattaTech';">
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-gray-300 hover:text-brand-purple transition-colors font-medium">Início</a>
+                    <a href="#services" class="text-gray-300 hover:text-brand-purple transition-colors font-medium">Serviços</a>
+                    <a href="#cases" class="text-gray-300 hover:text-brand-purple transition-colors font-medium">Cases</a>
+                    <a href="#about" class="text-gray-300 hover:text-brand-purple transition-colors font-medium">Sobre</a>
+                    <a href="#contact" class="px-6 py-2 bg-brand-purple text-white rounded-full font-semibold glow-button">Fale Conosco</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-brand-purple focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#25242e] border-t border-gray-700">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-brand-purple/20 hover:text-brand-purple">Início</a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-brand-purple/20 hover:text-brand-purple">Serviços</a>
+                <a href="#cases" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-brand-purple/20 hover:text-brand-purple">Cases</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-brand-purple/20 hover:text-brand-purple">Sobre</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-brand-purple/20 hover:text-brand-purple">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 lg:pt-48 lg:pb-32 relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-brand-purple rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
+                <!-- Text Content -->
+                <div class="lg:col-span-6 text-center lg:text-left mb-12 lg:mb-0">
+                    <span class="inline-block py-1 px-3 rounded-full bg-brand-purple/10 border border-brand-purple/30 text-brand-purple text-sm font-semibold mb-6">
+                        Inovação & Tecnologia
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                        Transformamos o seu negócio com <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-purple-400">Inteligência Digital</span>
+                    </h1>
+                    <p class="text-gray-300 text-lg mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        A Pratta Tech desenvolve soluções tecnológicas sob medida para escalar sua empresa. Design, desenvolvimento e estratégia em um só lugar.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#contact" class="px-8 py-4 bg-brand-purple text-white rounded-lg font-bold text-lg glow-button flex items-center justify-center gap-2">
+                            Iniciar Projeto <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                        <a href="#services" class="px-8 py-4 bg-transparent border border-gray-600 text-white rounded-lg font-bold text-lg hover:bg-white/5 transition-colors flex items-center justify-center">
+                            Nossos Serviços
+                        </a>
+                    </div>
+                    
+                    <!-- Differentiators (Key Selling Points) -->
+                    <div class="mt-10 space-y-4 max-w-lg mx-auto lg:mx-0">
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-purple/20 flex items-center justify-center text-brand-purple shrink-0 border border-brand-purple/30">
+                                <i class="fas fa-check text-xs"></i>
+                            </div>
+                            <span class="text-gray-300 font-medium">Desenvolvimento 100% sob medida, sem templates prontos</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-purple/20 flex items-center justify-center text-brand-purple shrink-0 border border-brand-purple/30">
+                                <i class="fas fa-check text-xs"></i>
+                            </div>
+                            <span class="text-gray-300 font-medium">Foco total em performance e experiência do usuário (UX)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 rounded-full bg-brand-purple/20 flex items-center justify-center text-brand-purple shrink-0 border border-brand-purple/30">
+                                <i class="fas fa-check text-xs"></i>
+                            </div>
+                            <span class="text-gray-300 font-medium">Consultoria estratégica contínua pós-lançamento</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Visual (SVG/Illustration placeholder) -->
+                <div class="lg:col-span-6 relative animate-float">
+                    <div class="relative rounded-2xl bg-gradient-to-tr from-[#25242e] to-[#3a3947] border border-gray-700 p-6 shadow-2xl">
+                        <!-- Simulated App Interface -->
+                        <div class="flex items-center gap-2 mb-6">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        
+                        <!-- Big Numbers Grid -->
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <!-- Stat Card 1 -->
+                            <div class="bg-[#302f3b]/80 p-4 rounded-xl border border-gray-600 backdrop-blur-sm">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="p-2 bg-brand-purple/20 rounded-lg text-brand-purple">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <span class="text-green-400 text-xs font-bold bg-green-400/10 px-2 py-1 rounded">+127%</span>
+                                </div>
+                                <p class="text-gray-400 text-xs mb-1">Crescimento</p>
+                                <p class="text-2xl font-bold text-white">ROI 3.5x</p>
+                            </div>
+
+                            <!-- Stat Card 2 -->
+                            <div class="bg-[#302f3b]/80 p-4 rounded-xl border border-gray-600 backdrop-blur-sm">
+                                <div class="flex items-start justify-between mb-2">
+                                    <div class="p-2 bg-blue-500/20 rounded-lg text-blue-400">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                </div>
+                                <p class="text-gray-400 text-xs mb-1">Leads Gerados</p>
+                                <p class="text-2xl font-bold text-white">12.5k</p>
+                            </div>
+                        </div>
+
+                        <!-- Main Big Number Area -->
+                        <div class="bg-[#302f3b]/80 p-5 rounded-xl border border-gray-600 mb-2 backdrop-blur-sm">
+                            <div class="flex justify-between items-end mb-2">
+                                <div>
+                                    <p class="text-gray-400 text-xs mb-1">Receita Gerada para Clientes</p>
+                                    <p class="text-3xl lg:text-4xl font-bold text-white tracking-tight">R$ 2.4M</p>
+                                </div>
+                                <div class="h-8 w-8 rounded-full border-2 border-green-500 flex items-center justify-center">
+                                    <i class="fas fa-arrow-up text-green-500 text-xs transform rotate-45"></i>
+                                </div>
+                            </div>
+                            <!-- Fake Chart Bar -->
+                            <div class="w-full bg-gray-700 h-1.5 rounded-full overflow-hidden flex">
+                                <div class="bg-brand-purple h-full w-[30%]"></div>
+                                <div class="bg-blue-500 h-full w-[20%]"></div>
+                                <div class="bg-green-500 h-full w-[35%]"></div>
+                            </div>
+                            <div class="flex justify-between text-[10px] text-gray-500 mt-2">
+                                <span>Jan</span>
+                                <span>Fev</span>
+                                <span>Mar</span>
+                                <span>Abr</span>
+                                <span>Mai</span>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge -->
+                        <div class="absolute -bottom-6 -right-6 bg-white text-brand-dark p-4 rounded-xl shadow-lg flex items-center gap-3">
+                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-gray-500">Performance</p>
+                                <p class="font-bold text-lg">Otimizada</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-[#25242e]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Soluções <span class="text-brand-purple">Pratta Tech</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Tecnologia de ponta a ponta para resolver desafios complexos do seu negócio.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-[#302f3b] p-8 rounded-2xl hover:bg-[#353441] transition-all duration-300 hover:-translate-y-2 border border-transparent hover:border-brand-purple/30 group">
+                    <div class="w-14 h-14 bg-brand-purple/10 rounded-xl flex items-center justify-center text-brand-purple mb-6 group-hover:bg-brand-purple group-hover:text-white transition-colors">
+                        <i class="fas fa-code text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Desenvolvimento Web</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Sites institucionais, e-commerces e plataformas web de alta performance utilizando as tecnologias mais modernas.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-[#302f3b] p-8 rounded-2xl hover:bg-[#353441] transition-all duration-300 hover:-translate-y-2 border border-transparent hover:border-brand-purple/30 group">
+                    <div class="w-14 h-14 bg-brand-purple/10 rounded-xl flex items-center justify-center text-brand-purple mb-6 group-hover:bg-brand-purple group-hover:text-white transition-colors">
+                        <i class="fas fa-mobile-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Aplicativos Mobile</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Apps nativos e híbridos para iOS e Android com foco em usabilidade e engajamento do usuário.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-[#302f3b] p-8 rounded-2xl hover:bg-[#353441] transition-all duration-300 hover:-translate-y-2 border border-transparent hover:border-brand-purple/30 group">
+                    <div class="w-14 h-14 bg-brand-purple/10 rounded-xl flex items-center justify-center text-brand-purple mb-6 group-hover:bg-brand-purple group-hover:text-white transition-colors">
+                        <i class="fas fa-rocket text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Transformação Digital</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Consultoria para digitalizar processos, automação e implementação de ferramentas de gestão.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us / Features -->
+    <section id="about" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 gap-16 items-center">
+                <div class="mb-12 lg:mb-0">
+                    <img src="https://res.cloudinary.com/ddkundhsl/image/upload/v1767220708/Post_Instagram_-_Pratta_Tech_vr7mgt.png" alt="Pratta Tech Destaques" class="rounded-2xl shadow-2xl border border-gray-700 w-full object-cover transform hover:scale-[1.02] transition-transform duration-500">
+                </div>
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Por que escolher a <span class="text-brand-purple">Pratta Tech</span>?</h2>
+                    <p class="text-gray-300 mb-8">Não somos apenas desenvolvedores. Somos parceiros estratégicos focados no crescimento do seu negócio através da tecnologia.</p>
+
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-[#25242e] rounded-full flex items-center justify-center border border-gray-700 text-brand-purple">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Agilidade na Entrega</h4>
+                                <p class="text-gray-400 text-sm">Metodologias ágeis que garantem entregas rápidas e constantes.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-[#25242e] rounded-full flex items-center justify-center border border-gray-700 text-brand-purple">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Segurança e Escalabilidade</h4>
+                                <p class="text-gray-400 text-sm">Código limpo e infraestrutura segura pronta para crescer com você.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-[#25242e] rounded-full flex items-center justify-center border border-gray-700 text-brand-purple">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Suporte Dedicado</h4>
+                                <p class="text-gray-400 text-sm">Equipe disponível para manter suas operações sempre ativas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Cases de Sucesso -->
+    <section id="cases" class="py-20 bg-[#25242e] relative overflow-hidden">
+        <!-- Decor element -->
+        <div class="absolute left-0 top-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-purple/30 to-transparent"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-brand-purple font-semibold tracking-wider text-sm uppercase">Nossos Projetos</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4">Cases de <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-white">Sucesso Real</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Resultados que falam por si. Confira como transformamos desafios em oportunidades digitais.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Case Card 1 -->
+                <div class="bg-[#302f3b] rounded-2xl overflow-hidden border border-gray-700 hover:border-brand-purple/50 transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-brand-purple/10 group-hover:bg-transparent transition-colors z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="E-commerce Project" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-4">
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-brand-purple/20 text-brand-purple px-2 py-1 rounded">E-commerce</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-gray-700 text-gray-300 px-2 py-1 rounded">React</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Fashion Retail Pro</h3>
+                        <p class="text-gray-400 text-sm mb-6">Plataforma de vendas omnicanal com integração de estoque em tempo real.</p>
+                        
+                        <!-- Big Numbers -->
+                        <div class="grid grid-cols-2 gap-4 bg-[#25242e] rounded-xl p-4">
+                            <div>
+                                <p class="text-lg font-bold text-green-400">+150%</p>
+                                <p class="text-[10px] text-gray-500 uppercase">Vendas Online</p>
+                            </div>
+                            <div>
+                                <p class="text-lg font-bold text-white">3.2s</p>
+                                <p class="text-[10px] text-gray-500 uppercase">Carregamento</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Card 2 -->
+                <div class="bg-[#302f3b] rounded-2xl overflow-hidden border border-gray-700 hover:border-brand-purple/50 transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-brand-purple/10 group-hover:bg-transparent transition-colors z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fintech Project" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-4">
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-brand-purple/20 text-brand-purple px-2 py-1 rounded">Fintech</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-gray-700 text-gray-300 px-2 py-1 rounded">Dashboard</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">CryptoDash Elite</h3>
+                        <p class="text-gray-400 text-sm mb-6">Painel financeiro de alta complexidade para gestão de ativos digitais.</p>
+                        
+                        <!-- Big Numbers -->
+                        <div class="grid grid-cols-2 gap-4 bg-[#25242e] rounded-xl p-4">
+                            <div>
+                                <p class="text-lg font-bold text-brand-purple">50k+</p>
+                                <p class="text-[10px] text-gray-500 uppercase">Usuários Ativos</p>
+                            </div>
+                            <div>
+                                <p class="text-lg font-bold text-white">Zero</p>
+                                <p class="text-[10px] text-gray-500 uppercase">Downtime</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Card 3 -->
+                <div class="bg-[#302f3b] rounded-2xl overflow-hidden border border-gray-700 hover:border-brand-purple/50 transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-brand-purple/10 group-hover:bg-transparent transition-colors z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="App Project" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-4">
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-brand-purple/20 text-brand-purple px-2 py-1 rounded">Mobile</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-gray-700 text-gray-300 px-2 py-1 rounded">SaaS</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">LogiTrack App</h3>
+                        <p class="text-gray-400 text-sm mb-6">Sistema de rastreamento e gestão logística para frotas corporativas.</p>
+                        
+                        <!-- Big Numbers -->
+                        <div class="grid grid-cols-2 gap-4 bg-[#25242e] rounded-xl p-4">
+                            <div>
+                                <p class="text-lg font-bold text-green-400">-30%</p>
+                                <p class="text-[10px] text-gray-500 uppercase">Custos Operacionais</p>
+                            </div>
+                            <div>
+                                <p class="text-lg font-bold text-white">4.9</p>
+                                <p class="text-[10px] text-gray-500 uppercase">Avaliação na Store</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-[#25242e] to-[#302f3b]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-[#302f3b] rounded-3xl p-8 md:p-12 border border-gray-700 shadow-2xl relative overflow-hidden">
+                <!-- Decorative circle -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-brand-purple/10 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+                
+                <div class="relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    
+                    <!-- Option 1: Email Direct -->
+                    <div class="flex flex-col justify-center text-center lg:text-left">
+                        <div class="w-16 h-16 bg-brand-purple/20 rounded-2xl flex items-center justify-center text-brand-purple text-2xl mb-6 mx-auto lg:mx-0">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-4">Fale Conosco</h2>
+                        <p class="text-gray-400 mb-8">Escolha a melhor forma de iniciar o seu projeto. Estamos prontos para atender você.</p>
+                        
+                        <div class="bg-[#25242e] p-6 rounded-2xl border border-gray-600 mb-6 group hover:border-brand-purple transition-all duration-300">
+                            <p class="text-sm text-gray-400 mb-2 font-medium">Opção 1: E-mail Direto</p>
+                            <a href="mailto:prattatech@gmail.com" class="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 hover:to-brand-purple transition-all break-all">
+                                prattatech@gmail.com
+                            </a>
+                            <p class="text-gray-500 text-sm mt-4 leading-relaxed">
+                                Prefere descrever seu projeto com detalhes e anexar documentos? Envie um e-mail tradicional e nossa equipe analisará sua proposta com atenção.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Option 2: WhatsApp Form -->
+                    <div class="bg-[#25242e]/50 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-gray-600">
+                        <div class="mb-6 flex items-center gap-3">
+                            <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center text-green-500">
+                                <i class="fab fa-whatsapp text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Opção 2: Agilidade via WhatsApp</h3>
+                        </div>
+                        
+                        <form class="space-y-4" onsubmit="sendToWhatsapp(event)">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-1.5">Nome</label>
+                                <input type="text" name="nome" class="w-full bg-[#302f3b] border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition-colors placeholder-gray-600" placeholder="Seu nome" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-1.5">Email</label>
+                                <input type="email" name="email" class="w-full bg-[#302f3b] border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition-colors placeholder-gray-600" placeholder="seu@email.com" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-400 mb-1.5">Sobre o Projeto</label>
+                                <textarea name="mensagem" rows="3" class="w-full bg-[#302f3b] border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition-colors placeholder-gray-600" placeholder="Como podemos ajudar?" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 rounded-lg shadow-lg hover:shadow-green-500/30 transition-all flex items-center justify-center gap-2 mt-2">
+                                <i class="fab fa-whatsapp text-xl"></i> Iniciar Conversa
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1f1e26] pt-12 pb-6 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="mb-4">
+                        <img src="https://res.cloudinary.com/ddkundhsl/image/upload/v1767220328/5_d5neka.png" alt="Pratta Tech" class="h-8 w-auto object-contain" onerror="this.onerror=null; this.src='https://placehold.co/120x40/1f1e26/6c63ff?text=PrattaTech';">
+                    </div>
+                    <p class="text-gray-500 text-sm max-w-xs">
+                        Elevando negócios através de tecnologia de ponta, design intuitivo e estratégias digitais eficazes.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li><a href="#home" class="hover:text-brand-purple transition-colors">Início</a></li>
+                        <li><a href="#services" class="hover:text-brand-purple transition-colors">Serviços</a></li>
+                        <li><a href="#about" class="hover:text-brand-purple transition-colors">Sobre Nós</a></li>
+                        <li><a href="#contact" class="hover:text-brand-purple transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-4">Social</h4>
+                    <div class="flex flex-col gap-4">
+                        <a href="https://www.instagram.com/pratta.tech/" target="_blank" class="w-10 h-10 rounded-full bg-[#302f3b] flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-purple transition-all self-start">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="mailto:prattatech@gmail.com" class="text-gray-400 hover:text-brand-purple transition-colors text-sm hover:underline">
+                            prattatech@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-600 text-sm text-center md:text-left">
+                    &copy; 2024 Pratta Tech. Todos os direitos reservados.
+                </p>
+                <div class="text-gray-600 text-sm flex gap-4">
+                    <button onclick="openModal('privacyModal')" class="hover:text-gray-400 transition-colors">Privacidade</button>
+                    <button onclick="openModal('termsModal')" class="hover:text-gray-400 transition-colors">Termos</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Privacy Modal -->
+    <div id="privacyModal" class="modal fixed inset-0 z-[60] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal('privacyModal')"></div>
+        <div class="bg-[#25242e] rounded-2xl p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto relative border border-gray-700 shadow-2xl">
+            <button onclick="closeModal('privacyModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <h2 class="text-2xl font-bold mb-6 text-white">Política de Privacidade</h2>
+            <div class="space-y-4 text-gray-300 text-sm leading-relaxed">
+                <p><strong>1. Introdução</strong><br>A Pratta Tech valoriza sua privacidade. Esta política descreve como coletamos, usamos e protegemos suas informações pessoais ao utilizar nosso site e serviços.</p>
+                <p><strong>2. Coleta de Dados</strong><br>Coletamos informações que você nos fornece voluntariamente, como nome, e-mail e detalhes do projeto através do formulário de contato. Também podemos coletar dados anônimos de navegação para melhorar a experiência do usuário.</p>
+                <p><strong>3. Uso das Informações</strong><br>Utilizamos seus dados exclusivamente para: responder a solicitações, enviar orçamentos, melhorar nossos serviços e, ocasionalmente, enviar atualizações sobre a Pratta Tech (caso tenha consentido).</p>
+                <p><strong>4. Compartilhamento de Dados</strong><br>Não vendemos, alugamos ou compartilhamos suas informações pessoais com terceiros, exceto quando exigido por lei ou necessário para a prestação de serviços contratados.</p>
+                <p><strong>5. Segurança</strong><br>Implementamos medidas de segurança técnicas e organizacionais para proteger seus dados contra acesso não autorizado, alteração ou destruição.</p>
+                <p><strong>6. Contato</strong><br>Para dúvidas sobre esta política, entre em contato através do e-mail: prattatech@gmail.com.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div id="termsModal" class="modal fixed inset-0 z-[60] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal('termsModal')"></div>
+        <div class="bg-[#25242e] rounded-2xl p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto relative border border-gray-700 shadow-2xl">
+            <button onclick="closeModal('termsModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <h2 class="text-2xl font-bold mb-6 text-white">Termos de Uso</h2>
+            <div class="space-y-4 text-gray-300 text-sm leading-relaxed">
+                <p><strong>1. Aceitação dos Termos</strong><br>Ao acessar e utilizar o site da Pratta Tech, você concorda em cumprir estes Termos de Uso e todas as leis aplicáveis.</p>
+                <p><strong>2. Propriedade Intelectual</strong><br>Todo o conteúdo deste site, incluindo textos, gráficos, logotipos e códigos, é propriedade da Pratta Tech e está protegido por leis de direitos autorais.</p>
+                <p><strong>3. Uso do Site</strong><br>Você concorda em não utilizar este site para fins ilegais ou proibidos. É vedada a tentativa de violar a segurança do site ou acessar áreas restritas sem autorização.</p>
+                <p><strong>4. Limitação de Responsabilidade</strong><br>A Pratta Tech não se responsabiliza por danos diretos ou indiretos decorrentes do uso ou da impossibilidade de uso deste site ou de seus serviços.</p>
+                <p><strong>5. Modificações</strong><br>Reservamo-nos o direito de alterar estes termos a qualquer momento. O uso contínuo do site após as alterações constitui aceitação dos novos termos.</p>
+                <p><strong>6. Foro</strong><br>Fica eleito o foro da comarca da sede da empresa para dirimir quaisquer dúvidas oriundas destes termos.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // WhatsApp Form Handler
+        function sendToWhatsapp(event) {
+            event.preventDefault();
+            
+            const nome = document.querySelector('input[name="nome"]').value;
+            const email = document.querySelector('input[name="email"]').value;
+            const mensagem = document.querySelector('textarea[name="mensagem"]').value;
+            
+            // Format: Country Code (55) + Area Code (11) + Number (932911924)
+            const phoneNumber = "5511932911924";
+            
+            // Create formatted, well-elaborated message
+            // Using %0A for line breaks in the URL structure
+            const text = `👋 *Olá, Pratta Tech!*\n\n` +
+                         `Meu nome é *${nome}* e estou visitando o site.\n\n` +
+                         `🚀 *Tenho interesse em um projeto/serviço.*\n` +
+                         `Aqui estão meus detalhes para contato:\n\n` +
+                         `📧 *Email:* ${email}\n` +
+                         `📝 *Mensagem:* \n${mensagem}\n\n` +
+                         `Aguardo o retorno de vocês! Obrigado(a).`;
+            
+            // Encode for URL
+            const encodedText = encodeURIComponent(text);
+            
+            // Open WhatsApp
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedText}`, '_blank');
+        }
+
+        // Modal Functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('hidden');
+            // Small delay to allow display:block to apply before opacity transition
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.classList.add('hidden'); // Use CSS class if you want to fully hide it after transition
+                // Or just rely on pointer-events: none from CSS
+            }, 300);
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        // Initialize modals as hidden (optional if CSS handles it perfectly, but safer)
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.classList.add('hidden');
+            });
+        });
+
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Simple Fade In on Scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div').forEach((section) => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
+    
+  </body>
+  
+</html>
